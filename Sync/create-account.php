@@ -20,11 +20,11 @@
 
 <body>
   <!-- Navbar -->
- <nav class="navbar navbar-expand-md bg-primary navbar-light fixed-top">
+  <nav class="navbar navbar-expand-md bg-primary navbar-light fixed-top">
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-center" id="navbar3SupportedContent">
-        <a class="btn navbar-btn btn-secondary mx-2" href="index.html">Learn more</a>
+        <a class="btn navbar-btn btn-secondary mx-2" href="index.php">Learn more</a>
       </div>
     </div>
   </nav>
@@ -37,7 +37,7 @@
         </div>
         <div class="col-lg-5 p-3">
 
-     <!--signup form-->
+          <!--signup form-->
           <form class="p-4 section-light bg-light" class="signup-form" action="includes/signup.inc.php" method="POST">
             <h4 class="mb-3 text-center">Join now</h4>
 
@@ -46,23 +46,23 @@
               <input type="text" class="form-control" name="firstName" id="firstName" placeholder="John"> </div>
 
               <div class="form-group"> <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Doe"> </div>
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Doe"> </div>
 
-            <div class="form-group"> <label for="username">Username</label>
-              <input type="text" class="form-control" name="username" id="username" placeholder="Enter username"> <small id="emailHelp" class="form-text"></small> </div>
+                <div class="form-group"> <label for="username">Username</label>
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Enter username"> <small id="emailHelp" class="form-text"></small> </div>
 
-            <div class="form-group"> <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Password"> </div>
+                  <div class="form-group"> <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"> </div>
 
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Create Account</button>
-          </form>
+                    <button type="submit" name="submit" class="btn btn-primary btn-block">Create Account</button>
+                  </form>
 
 
-        </div>
-      </div>
-    </div>
-  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<?php
-include_once 'footer.php';
-?>
+          <?php
+          include_once 'footer.php';
+          ?>

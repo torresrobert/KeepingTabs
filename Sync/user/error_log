@@ -1,0 +1,4 @@
+[21-Feb-2018 08:35:28 America/New_York] PHP Parse error:  syntax error, unexpected '|', expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/torresro/keepingtabs.co/user/chart_of_accounts.php on line 58
+[21-Feb-2018 08:43:37 America/New_York] PHP Parse error:  syntax error, unexpected ']' in /home/torresro/keepingtabs.co/user/chart_of_accounts.php on line 54
+[21-Feb-2018 08:44:25 America/New_York] PHP Parse error:  syntax error, unexpected 'True' (T_STRING), expecting ',' or ';' in /home/torresro/keepingtabs.co/user/chart_of_accounts.php on line 55
+[21-Feb-2018 08:44:48 America/New_York] PHP Parse error:  syntax error, unexpected 'True' (T_STRING), expecting ',' or ';' in /home/torresro/keepingtabs.co/user/chart_of_accounts.php on line 55

@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- PAGE settings -->
+  <meta http-equiv="Cache-control" content="public">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="src/logo.png" />
   <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
   <title>KeepingTabs</title>
   <meta name="description" content="An easy and inclusive accounting software for everyone.">
@@ -46,7 +48,7 @@
           <p class="lead">An easy and inclusive accounting software for everyone.&nbsp;</p>
         </div>
         <div class="col-lg-6">
-          <img class="img-fluid d-block mx-auto" src="assets/app/iphone_cover_light.png" width="400"> </div>
+          <img class="img-fluid d-block mx-auto" src="assets/app/iphone_cover_light-squashed.png" width="400"> </div>
       </div>
     </div>
   </div>
@@ -55,21 +57,19 @@
     <div class="container">
       <div class="row py-5">
         <div class="col-md-5 order-2 order-md-1 animate-in-left">
-          <img class="img-fluid d-block my-3 mx-auto" src="assets/app/iphone_side_light.png" width="200"> </div>
+          <img class="img-fluid d-block my-3 mx-auto" src="assets/app/iphone_side_light.png" width="400"> </div>
         <div class="col-md-7 align-self-center order-1 order-md-2 my-3 text-md-left text-center">
           <h2>Easy, yet powerful</h2>
-          <p class="my-4 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          <p class="my-4 text-muted">KeepingTabs provides individuals as well as businesses an easy and approachable way to keep track of their finances. Managing the accounting, tracking expenses and providing real time reports are just some of the applications KeepingTabs provides. Easy to use, time saving and a great fit for all, start Keeping tabs today!</p>
           <a class="btn btn-outline-secondary" href="#features">Learn more</a>
         </div>
       </div>
       <div class="row pt-5">
         <div class="align-self-center col-lg-7 text-md-left text-center">
           <h2>Works everywhere</h2>
-          <p class="my-4 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi t aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p class="my-4 text-muted">KeepingTabs doesn’t just run on your phone. It works so well for you and others—because it’s accessible from any computer or device. In today’s times, this is the best way to build an app and the only way to serve an audience that expects an instant response at all times.</p>
           <a class="btn shadowed btn-secondary"
-            href="#create-account.html">Join now</a>
+            href="create-account.php">Join now</a>
         </div>
         <div class="align-self-center mt-5 col-lg-5 animate-in-right">
           <img class="img-fluid d-block" src="assets/app/iphone_ipad_light.png"> </div>
@@ -96,7 +96,7 @@
             <br>The support you need, right there.</p>
         </div>
         <div class="my-3 col-md-4 d-none d-lg-block animate-in-down">
-          <img class="img-fluid d-block mx-auto" src="assets/app/iphone_features_light.png" width="300"> </div>
+          <img class="img-fluid d-block mx-auto" src="assets/app/iphone_features_light.png" width="600"> </div>
         <div class="align-self-center text-md-left text-center col-lg-4 col-md-6">
           <h4 class="text-primary">Post Transactions</h4>
           <p class="mb-5">Non consuming background operation for longer mobile life</p>
@@ -154,7 +154,7 @@
           <h1><b>Join KeepingTabs</b></h1>
           <p class="lead">Get it on your mobile device right now</p>
           <a class="btn shadowed btn-block btn-secondary"
-            href="#create-account.html">Join now</a>
+            href="create-account.php">Join now</a>
         </div>
       </div>
     </div>
@@ -164,7 +164,7 @@
     <div class="container">
       <div class="row">
         <div class="col-4 col-md-4 align-self-center my-3">
-          <a href="https://www.github.com" target="blank"><i class="fa fa-fw fa-github
+          <a href="https://www.github.com/" target="blank"><i class="fa fa-fw fa-github
  fa-3x text-white"></i></a>
         </div>
         <div class="col-4 col-md-4 align-self-center my-3">
