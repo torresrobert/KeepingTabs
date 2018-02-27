@@ -54,7 +54,7 @@ include_once 'user.header.php'
        <th scope="col">Account Number</th>
        <th scope="col">Account Name</th>
        <th scope="col">Account Type</th>
-       <th scope="col">Is Active?</th>
+       <th scope="col">Active</th>
        <th scope="col">Normal Side</th>
        <th scope="col">Balance</th>
        <?php
@@ -72,7 +72,7 @@ include_once 'user.header.php'
        echo '<th scope="row">'.$employee['accountNumber']."</th>";
        echo  "<td>".$employee['accountName']."</td>";
        echo "<td>".$employee['accountType']."</td>";
-       if ($employee['isActive?']){
+       if ($employee['isActive']){
          echo "<td>True</td>";
        }else {
          echo "<td>False</td>";
@@ -82,7 +82,7 @@ include_once 'user.header.php'
        echo "<td>".$employee['NormalSide']."</td>";
        echo "<td>".$employee['Balance']."</td>";
        if (($_SESSION['u_atype']=='admin')){
-       echo "<td><a href=\"edit_account.php?id=$employee[AccountID]\">Edit</a> | <a href=\"delete_user.php?id=$employee[username]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+       echo "<td><a href=\"edit_account.php?id=$employee[AccountID]\">Edit</a> | <a href=\"delete_account.php?id=$employee[AccountID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
      }
       echo "<td>".$employee['createdOn']."</td>";
        echo "</tr>";

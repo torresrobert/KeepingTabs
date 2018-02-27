@@ -1,50 +1,59 @@
 <?php
 include_once 'user.header.php';
-$username = $_GET['id'];
+$AccountID = $_GET['id'];
 ?>
 <?php
 if(isset($_POST['update'])&&($_SESSION['u_atype']=='admin'))
 {
-    $username = $_REQUEST['username'];
-
-    $firstName=$_POST['firstName'];
-    $lastName=$_POST['lastName'];
+    $AccountID = $_REQUEST['AccountID'];
+    $accountName = mysqli_real_escape_string($conn, $_POST['accountName']);
     $accountType=$_POST['accountType'];
+    $isActive=$_POST['isActive'];
+    $NormalSide=$_POST['NormalSide'];
+    $Balance = mysqli_real_escape_string($conn, $_POST['Balance']);
+    $accountNumber = mysqli_real_escape_string($conn, $_POST['accountNumber']);
 
     // checking empty fields
-    if(empty($firstName) || empty($lastName) || empty($accountType)) {
-        if(empty($firstName)) {
-            echo "<font color='red'>First name field is empty.</font><br/>";
+    if(empty($accountName) || empty($Balance)){
+        if(empty($accountName)) {
+            echo "<font color='red'>Account name field is empty.</font><br/>";
+
+            echo "<button class='btn btn-outline-danger' onclick='goBack()'>Try again?</button>";
+
+
         }
 
-        if(empty($lastName)) {
-            echo "<font color='red'>Last name field is empty.</font><br/>";
+        if(empty($Balance)) {
+            echo "<font color='red'>Account balance field is empty.</font><br/>";
+
+            echo "<button class='btn btn-outline-danger' onclick='goBack()'>Try again?</button>";
         }
 
-        if(empty($accountType)) {
-            echo "<font color='red'>Account type field is empty.</font><br/>";
-        }
-    } else {
+      }else{
         //updating the table
-        $sql =  "UPDATE Users SET firstName='$firstName',lastName='$lastName',accountType='$accountType' WHERE username='$username'";
+        $sql = "UPDATE FinancialAccounts SET accountName = '$accountName', accountType = '$accountType', NormalSide = '$NormalSide', Balance = '$Balance', isActive = '$isActive' WHERE accountNumber = '$accountNumber'";
         $update = mysqli_query($conn, $sql);
 
-        //redirectig to the display page. In our case, it is index.php
-        //header("Location: user_dir.php");
-    }
-    if ($conn->query($sql) === TRUE) {
-    echo "Record updated successfully";
-} else {
-    echo "Error updating record: " . $conn->error;
-}
 
 }
+        //header("Location: user_dir.php");
+        if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
+        } else {
+        echo "Error updating record: " . $conn->error;
+        }
+
+
+    }
+
+
+
 ?>
 <div class="text-center bg-warning text-white py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-5 text-danger"><strong>Modifying User Information</strong></h1>
+          <h1 class="display-5 text-danger"><strong>Modifying Account Information</strong></h1>
         </div>
       </div>
       <div class="row">
@@ -58,44 +67,91 @@ if(isset($_POST['update'])&&($_SESSION['u_atype']=='admin'))
 <?php
 //getting id from url
 
-//$id = $_GET['id'];
+//
 
 //selecting data associated with this particular id
-$result = mysqli_query($conn, "SELECT * FROM Users WHERE username = '$username'");
+$result = mysqli_query($conn, "SELECT * FROM FinancialAccounts WHERE AccountID = '$AccountID'");
 
 
 
 while($employee = mysqli_fetch_array($result))
 {
-    $firstName = $employee['firstName'];
-    $lastName = $employee['lastName'];
+    $accountNumber = $employee['accountNumber'];
+    $accountName = $employee['accountName'];
     $accountType = $employee['accountType'];
+    $isActive = $employee['isActive'];
+    $NormalSide = $employee['NormalSide'];
+    $Balance = $employee['Balance'];
 }
 ?>
 
-    <form name="form1" method="POST" action="edit_user.php">
-        <table>
-            <tr>
-                <td>First Name</td>
-                <td><input type="text" name="firstName" value="<?php echo $firstName;?>"></td>
-            </tr>
-            <tr>
-                <td>Last Name</td>
-                <td><input type="text" name="lastName" value="<?php echo $lastName;?>"></td>
-            </tr>
-            <tr>
-                <td>Account Type</td>
-                <td><input type="text" name="accountType" value="<?php echo $accountType;?>"></td>
-            </tr>
-            <tr>
-                <td><input type="hidden" name="username" value=<?php echo $username;?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
-            </tr>
-        </table>
-    </form>
 
 
+        <!--update accounts form-->
+        <form class="p-4 section-light bg-light" class="form-control" action="edit_account.php" method="POST">
+
+
+          <div class="form-group"> <label for="accountNumber">Account Number</label>
+            <input type="text" class="form-control" name="accountNumber" value="<?php echo $accountNumber;?>" id="accountNumber"> </div>
+
+            <div class="form-group"> <label for="accountName">Account Name</label>
+              <input type="text" class="form-control" name="accountName" value="<?php echo $accountName;?>"></div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text"  for="inputGroupSelect01">Account Type</label>
+                </div>
+                <select class="custom-select" name="accountType" id="inputGroupSelect01">
+
+                  <option selected>Choose...</option>
+                  <option value="assets">Assets</option>
+                  <option value="liabilities">Liabilities</option>
+                  <option value="owners_equity">Owners Equity</option>
+                  <option value="revenue">Revenue</option>
+                  <option value="expenses">Expenses</option>
+                </select>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text"  for="inputGroupSelect02">Is Active?</label>
+                </div>
+
+                <select class="custom-select" name="isActive" id="inputGroupSelect02">
+                  <option selected>Choose...</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text"  for="inputGroupSelect03">Normal Side</label>
+                    </div>
+
+                    <select class="custom-select" name="NormalSide" id="inputGroupSelect03">
+                      <option selected>Choose...</option>
+                      <option value="credit">Credit</option>
+                      <option value="debit">Debit</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group"> <label for="Balanace">Balance</label>
+                    <input type="number" class="form-control" name="Balance" value="<?php echo $Balance;?>" placeholder="$0.00"> </div>
+
+                  <button type="submit" name="update" class="btn btn-primary btn-block">Update</button>
+                </form>
+
+
+              </div>
+            </div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 <?php
 include_once 'user.footer.php';
-
 ?>

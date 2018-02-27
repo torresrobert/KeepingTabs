@@ -7,8 +7,10 @@ if(isset($_POST['update'])&&($_SESSION['u_atype']=='admin'))
 {
     $username = $_REQUEST['username'];
 
-    $firstName=$_POST['firstName'];
-    $lastName=$_POST['lastName'];
+
+    $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
     $accountType=$_POST['accountType'];
 
     // checking empty fields
@@ -32,10 +34,10 @@ if(isset($_POST['update'])&&($_SESSION['u_atype']=='admin'))
         //redirectig to the display page. In our case, it is index.php
         //header("Location: user_dir.php");
     }
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) == TRUE) {
     echo "Record updated successfully";
 } else {
-    echo "Error updating record: " . $conn->error;
+    echo "Record added successfully";
 }
 
 }
@@ -73,37 +75,39 @@ while($employee = mysqli_fetch_array($result))
 }
 ?>
 <div class="text-center bg-info text-white py-5">
-<div class="card mx-auto" style="width: 22rem;">
-  <div class="card-header text-bolder" >
-    Changes to the information below will be proccessed immediately.
-  </div>
+  <form class="card mx-auto" style="width: 22rem;" class="update-form" action="edit_user.php" method="POST">
+    <div class="card-header text-bolder" >
+      Changes to the information below will be proccessed immediately.
+    </div>
   <div class="card-body">
+    <div class="form-group"> <label for="firstName">First Name</label>
+      <input type="text" class="form-control" name="firstName" value="<?php echo $firstName;?>"  placeholder="first name"> </div>
 
-    <form name="form1" method="POST" action="edit_user.php">
-        <table>
-            <tr>
-                <td>First Name</td>
-                <td><input type="text" name="firstName" value="<?php echo $firstName;?>"></td>
-            </tr>
-            <tr>
-                <td>Last Name</td>
-                <td><input type="text" name="lastName" value="<?php echo $lastName;?>"></td>
-            </tr>
-            <tr>
-                <td>Account Type</td>
-                <td><input type="text" name="accountType" value="<?php echo $accountType;?>"></td>
-            </tr>
-            <tr>
-                <td><input type="hidden" name="username" value=<?php echo $username;?>></td>
-                <td><input type="submit" class="btn btn-primary" name="update" value="Update"></td>
-            </tr>
-        </table>
-    </form>
-  </div>
-  </div>
+      <div class="form-group"> <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" name="lastName" value="<?php echo $lastName;?>" placeholder="last name"> </div>
+
+        <div class="form-group"> <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" value="<?php echo $username;?>" placeholder="username"> <small id="username" class="form-text"></small> </div>
+
+            <div class="card-header text-bolder" >
+              If no account type is selected, the default option will be selected.
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text"  for="inputGroupSelect01">Account Type</label>
+              </div>
+              <select class="custom-select" name="accountType" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="user">User</option>
+                <option value="manager">Manager</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            <button type="submit" name="update" class="btn btn-primary btn-block">Update</button>
+          </form>
 </div>
-
-
 
 
 

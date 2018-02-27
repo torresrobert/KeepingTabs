@@ -48,7 +48,7 @@ if (!isset($_SESSION['u_uid'])){
             <a class="nav-link text-white" href="user_dir.php">Users</a>
           </li>
 					<li class="nav-item mr-auto">
-            <a class="nav-link disabled" href="#">Documentation</a>
+            <a class="nav-link text-white" href="documentation.php">Documentation</a>
           </li>
         </ul>
         <form class="form-inline mr-auto">

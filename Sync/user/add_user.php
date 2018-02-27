@@ -36,6 +36,7 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
         //insert user into database
         $sql = "INSERT INTO Users (username, password, firstName, lastName, accountType) VALUES ('$username', '$hashedPwd', '$firstName', '$lastName', '$accountType');";
+        $log = "INSERT INTO Activity (username, password, firstName, lastName, accountType) VALUES ('$username', '$hashedPwd', '$firstName', '$lastName', '$accountType');";
         mysqli_query($conn, $sql);
         //header("Location: add_user.php?created-successful");
 
@@ -86,7 +87,7 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <label class="input-group-text"  for="inputGroupSelect01">Account Type</label>
+                <lÍÍÍÍÍÍabel class="input-group-text"  for="inputGroupSelect01">Account Type</label>
               </div>
               <select class="custom-select" name="accountType" id="inputGroupSelect01">
                 <option selected>Choose...</option>

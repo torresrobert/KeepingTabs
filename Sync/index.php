@@ -7,11 +7,13 @@
   <!-- PAGE settings -->
   <meta http-equiv="Cache-control" content="public">
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="src/logo.png" />
-  <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
+  <link rel="icon" href="/src/logo.ico">
   <title>KeepingTabs</title>
   <meta name="description" content="An easy and inclusive accounting software for everyone.">
   <meta name="keywords" content="">
   <!-- CSS dependencies -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="theme.css">
   <!-- Script: Make my navbar transparent when the document is scrolled to top -->
@@ -48,7 +50,7 @@
           <p class="lead">An easy and inclusive accounting software for everyone.&nbsp;</p>
         </div>
         <div class="col-lg-6">
-          <img class="img-fluid d-block mx-auto" src="assets/app/iphone_cover_light-squashed.png" width="400"> </div>
+          <img class="img-fluid d-block mx-auto" src="assets/app/iphone_cover_light.png" width="400"> </div>
       </div>
     </div>
   </div>
@@ -68,8 +70,7 @@
         <div class="align-self-center col-lg-7 text-md-left text-center">
           <h2>Works everywhere</h2>
           <p class="my-4 text-muted">KeepingTabs doesn’t just run on your phone. It works so well for you and others—because it’s accessible from any computer or device. In today’s times, this is the best way to build an app and the only way to serve an audience that expects an instant response at all times.</p>
-          <a class="btn shadowed btn-secondary"
-            href="create-account.php">Join now</a>
+          <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="We know you're excited to join! Please reach out to our product specialists so we can better assist you.">Open Enrollment is Over</button>
         </div>
         <div class="align-self-center mt-5 col-lg-5 animate-in-right">
           <img class="img-fluid d-block" src="assets/app/iphone_ipad_light.png"> </div>
@@ -80,7 +81,7 @@
   <div class="py-5" id="features">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12  text-center">
           <h2 class="pb-4">Features from the future</h2>
         </div>
       </div>
@@ -99,7 +100,7 @@
           <img class="img-fluid d-block mx-auto" src="assets/app/iphone_features_light.png" width="600"> </div>
         <div class="align-self-center text-md-left text-center col-lg-4 col-md-6">
           <h4 class="text-primary">Post Transactions</h4>
-          <p class="mb-5">Non consuming background operation for longer mobile life</p>
+          <p class="mb-5">Ready to post? Your account managers can securely and effectivly post transactions.</p>
           <h4 class="text-primary">Trial Balance</h4>
           <p class="mb-5">Work simultaneously on different panels with the switcher</p>
           <h4 class="text-primary">Statement Generation</h4>
@@ -120,22 +121,22 @@
               <div class="carousel-item active">
                 <img src="assets/app/reviews_logo_1_light.png" class="img-block mx-auto my-3 d-block" width="250" data-holder-rendered="true">
                 <div class="blockquote ">
-                  <p class="m-0">I can barely imagine my life without Pingendo</p>
-                  <div class="blockquote-footer">Alex Denver, Tech reviews</div>
+                  <p class="m-0">I can barely imagine my life without KeepingTabs</p>
+                  <div class="blockquote-footer">Donna Monita, Tech reviews</div>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="assets/app/reviews_logo_2_light.png" class="img-fluid my-3 mx-auto d-block" data-holder-rendered="true">
                 <div class="blockquote ">
-                  <p class="m-0">Pingendo sets a new standard for apps.</p>
-                  <div class="blockquote-footer">Sarah Krichko, APPetizer</div>
+                  <p class="m-0">KeepingTabs sets a new standard for financial apps.</p>
+                  <div class="blockquote-footer">Sarah Keeler, APPetizer</div>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="assets/app/reviews_logo_3_light.png" class="img-fluid my-3 mx-auto d-block" data-holder-rendered="true">
                 <div class="blockquote ">
                   <p class="m-0">Amazing, unique, essential and priceless</p>
-                  <div class="blockquote-footer">Monica Lay, News apps</div>
+                  <div class="blockquote-footer">Jessica Roy, News apps</div>
                 </div>
               </div>
             </div>
@@ -153,8 +154,8 @@
         <div class="col-md-6 align-self-center text-center text-md-left">
           <h1><b>Join KeepingTabs</b></h1>
           <p class="lead">Get it on your mobile device right now</p>
-          <a class="btn shadowed btn-block btn-secondary"
-            href="create-account.php">Join now</a>
+          <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="We know you're excited to join! Please reach out to our product specialists so we can better assist you.">Open Enrollment is Over</button>
+
         </div>
       </div>
     </div>
@@ -181,13 +182,20 @@
       </div>
     </div>
   </div>
+
+
+
+
+
   <!-- JavaScript dependencies -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
   <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <!-- Script: Smooth scrolling between anchors in the same page -->
   <script src="js/smooth-scroll.js"></script>
-
+<script>  $("[data-toggle=popover]").popover();</script>
 </body>
+
 
 </html>
