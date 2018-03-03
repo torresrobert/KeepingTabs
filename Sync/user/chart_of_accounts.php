@@ -48,7 +48,9 @@ include_once 'user.header.php'
        if (($_SESSION['u_atype']=='admin')){
        echo '<th scope="col">Update</th>';
      }
+     $row_count = 0;
   ?>
+
    <th scope="col">Created On</th>
      </tr>
    </thead>
@@ -58,7 +60,7 @@ include_once 'user.header.php'
        echo "<tr class='clickable-row' data-href='url://'>";
        echo '<th scope="row">'.$employee['accountNumber']."</th>";
        echo  "<td>".$employee['accountName']."</td>";
-       echo "<td>".$employee['accountType']."</td>";
+       echo "<td>".ucwords($employee['accountType'])."</td>";
        if ($employee['isActive']){
          echo "<td>Yes</td>";
        }else {
@@ -66,8 +68,17 @@ include_once 'user.header.php'
        }
 
 
-       echo "<td>".$employee['NormalSide']."</td>";
-       echo "<td><p class='text-right'>".$employee['Balance']."</p></td>";
+       echo "<td>".ucwords($employee['NormalSide'])."</td>";
+
+
+       if ($row_count == 0){
+       echo "<td><p class='text-right'>$".number_format($employee['Balance'],2)."</p></td>";
+       $row_count++;
+     }else {
+     echo "<td><p class='text-right'>".number_format($employee['Balance'],2)."</p></td>";
+     $row_count++;
+   }
+
        if (($_SESSION['u_atype']=='admin')){
        echo "<td><a href=\"edit_account.php?id=$employee[AccountID]\">Edit</a> | <a href=\"delete_account.php?id=$employee[AccountID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
      }
