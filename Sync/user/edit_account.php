@@ -85,11 +85,19 @@ while($employee = mysqli_fetch_array($result))
 }
 ?>
 
+<nav class="navbar navbar-light bg-light">
+  <a class="btn btn-outline-primary span4" href="chart_of_accounts.php" role="button"><i class="	fa fa-chevron-left"></i> Chart of Accounts</a>'
 
+</nav>
 
         <!--update accounts form-->
-        <form class="p-4 section-light bg-light" class="form-control" action="edit_account.php" method="POST">
+        <div class="text-center bg-info text-white py-5">
+          <form class="card mx-auto" style="width: 22rem;" class="form-control" action="edit_account.php" method="POST">
 
+            <div class="card-header text-bolder" >
+              Changes to the information below will be proccessed immediately.
+            </div>
+          <div class="card-body">
 
           <div class="form-group"> <label for="accountNumber">Account Number</label>
             <input type="text" class="form-control" name="accountNumber" value="<?php echo $accountNumber;?>" id="accountNumber"> </div>

@@ -64,8 +64,17 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
     </div>
   </div>
 </div>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="btn btn-outline-warning span4" href="user_dir.php" role="button"> <i class="	fa fa-chevron-left"></i> User Directory</a>'
+
+</nav>
+
+
 <div class="text-center bg-info text-white py-5">
 <div class="container">
+
+
 
 
   <!--signup form-->

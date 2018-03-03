@@ -74,6 +74,12 @@ while($employee = mysqli_fetch_array($result))
     $accountType = $employee['accountType'];
 }
 ?>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="btn btn-outline-primary span4" href="user_dir.php" role="button"> <i class="	fa fa-chevron-left"></i> User Directory</a>'
+
+</nav>
+
 <div class="text-center bg-info text-white py-5">
   <form class="card mx-auto" style="width: 22rem;" class="update-form" action="edit_user.php" method="POST">
     <div class="card-header text-bolder" >

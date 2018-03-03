@@ -41,6 +41,8 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
       }
 }
 ?>
+
+
 <div class="text-center bg-primary text-white py-5">
   <div class="container">
     <div class="row">
@@ -55,6 +57,11 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
     </div>
   </div>
 </div>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="btn btn-outline-warning span4" href="chart_of_accounts.php" role="button"><i class="	fa fa-chevron-left"></i> Chart of Accounts</a>'
+
+</nav>
 
 <div class="text-center bg-info text-white py-5">
   <div class="container">
