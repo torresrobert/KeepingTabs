@@ -24,15 +24,16 @@ session_start();
     </div>
   </nav>
   <div class="py-5 filter-gradient">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-3"> </div>
-        <div class="col-md-6">
-          <div class="card text-black bg-light">
-            <div><img class="img-fluid" src="src/logo_max_wide.png"></div>
-            <div class="card-body">
 
-              <h1">Welcome back to KeepingTabs</h1>
+    <div class="container mx-auto">
+      <div class="col-sm-2"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6"></div>
+          <div class="card text-black bg-light mx-auto">
+            <div class="mx-auto py-2"><img class="mx-auto" src="src/logo_max_wide.png" style="width:400px;height:275px;"></div>
+            <div class="card-body mx-auto">
+
+              <h1>Welcome back to KeepingTabs</h1>
               <p>
 
 
@@ -54,6 +55,9 @@ session_start();
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
           <div class="text-center bg-dark pt-5">
             <div class="container">
               <div class="row">
