@@ -19,7 +19,7 @@ session_start();
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-center" id="navbar3SupportedContent">
-        <a class="ml-3 btn navbar-btn btn-primary" href="#">Need an account?</a>
+        <a class="ml-3 btn navbar-btn btn-primary" href="index.php">Need an account?</a>
       </div>
     </div>
   </nav>

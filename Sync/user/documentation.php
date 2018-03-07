@@ -90,6 +90,7 @@ include_once 'user.header.php';
   </div>
 </div>
 </div>
+</div>
 
 <br><br>
 <?php
@@ -154,10 +155,12 @@ if(($_SESSION['u_atype']=='admin')){
   </div>
 </div>
 </div>
+</div>
 <br><br><br><br>
 
 ";
-}?>
+}
+?>
 
 
 

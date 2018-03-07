@@ -40,12 +40,14 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
         mysqli_query($conn, $sql);
         //header("Location: add_user.php?created-successful");
 
-      }  if (($result = $conn->query($sql)) !== FALSE){
-        echo "success";
+      }  if ($conn->query($sql) === TRUE) {
+      echo "Record updated successfully";
+      } else {
+      echo "Account added successfully";
       }
 
-    }
   }
+}
 
 }
 ?>
