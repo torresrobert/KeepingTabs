@@ -20,7 +20,10 @@ if (!isset($_SESSION['u_uid'])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.0.0/dt-1.10.16/datatables.min.css"/>
-  <link rel="stylesheet" href="user.css" type="text/css"> </head>
+  <link rel="stylesheet" href="user.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+	<script type="text/javascript" src="../script/functions.js"></script>
+</head>
 
 <body>
   <nav class="navbar navbar-expand-md bg-primary navbar-dark nav-fill">
