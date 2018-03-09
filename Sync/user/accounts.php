@@ -6,7 +6,7 @@ include_once 'user.header.php'
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-4">Chart of Accounts</h1>
+          <h1 class="display-4">Accounts</h1>
         </div>
       </div>
       <div class="row">
@@ -28,7 +28,7 @@ include_once 'user.header.php'
 
   <?php
   include '../includes/dbh.inc.php';
-  $sql = "SELECT * FROM FinancialAccounts WHERE isActive = '1'";
+  $sql = "SELECT * FROM FinancialAccounts";
   $records = mysqli_query($conn, $sql);
   ?>
 
@@ -72,7 +72,7 @@ include_once 'user.header.php'
 
 
        if ($row_count == 0){
-       echo "<td><p class='text-right'>".number_format($employee['Balance'],2)."</p></td>";
+       echo "<td><p class='text-right'>$".number_format($employee['Balance'],2)."</p></td>";
        $row_count++;
      }else {
      echo "<td><p class='text-right'>".number_format($employee['Balance'],2)."</p></td>";
