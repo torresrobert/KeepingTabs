@@ -22,7 +22,7 @@
   --gray: #6c757d;
   --gray-dark: #343a40;
   --primary: #333462;
-  --secondary: 333462;
+  --secondary: #333462;
   --success: #28a745;
   --info: #ccc;
   --warning: #ffc107;
@@ -6082,7 +6082,7 @@ a.text-dark:hover, a.text-dark:focus {
   color: #212529; }
 
 .bg-primary {
-  color: #fff; }
+  color: #333462; }
 
 .bg-secondary {
   color: #fff; }
