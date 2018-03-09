@@ -18,6 +18,9 @@ if (!isset($_SESSION['u_uid'])){
    <meta charset="utf-8">
    <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="src/logo.png" />
+  <link rel="icon" href="/src/logo.ico">
+  <title>KeepingTabs</title>
   <link rel="stylesheet" href="user.css" type="text/css">
 	<script type="text/javascript" src="../script/functions.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
