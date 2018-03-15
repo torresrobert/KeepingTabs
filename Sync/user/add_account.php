@@ -4,15 +4,18 @@ include_once 'user.header.php';
 ?>
 <?php
 //header();
+
 if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
 {
+  $username = $_SESSION['u_uid'];
   $accountNumber = mysqli_real_escape_string($conn, $_POST['accountNumber']);
   $accountName = mysqli_real_escape_string($conn, $_POST['accountName']);
   $accountType=$_POST['accountType'];
   $isActive=$_POST['isActive'];
   $NormalSide=$_POST['NormalSide'];
   $Balance = mysqli_real_escape_string($conn, $_POST['Balance']);
-
+  $activity = "Adding account";
+  $prev_val = "Did not exist";
 
 
       //check if username is taken
@@ -29,6 +32,8 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
         //insert user into database
         $sql = "INSERT INTO FinancialAccounts (accountNumber, accountName, accountType, isActive, NormalSide, Balance, AccountID) VALUES ('$accountNumber', '$accountName', '$accountType', '$isActive', '$NormalSide', '$Balance','$accountNumber');";
         mysqli_query($conn, $sql);
+        $log = "INSERT INTO Activity (PreviousValue, activity, username) VALUES ($prev_val, '$activity', '$username');";
+        mysqli_query($conn, $log);
 
 
         //header("Location: add_user.php?created-successful");

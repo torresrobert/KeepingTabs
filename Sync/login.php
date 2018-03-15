@@ -33,7 +33,7 @@ session_start();
         <div class="col-md-3"></div>
         <div class="col-md-6"></div>
           <div class="card text-black bg-light mx-auto">
-            <div class="mx-auto py-2"><img class="mx-auto" src="src/logo_max_wide.png" style="width:400px;height:275px;"></div>
+            <div class="mx-auto py-2"><img class="mx-auto" src="src/logo_max_wide.png" style="width:275px;height:189px;"></div>
             <div class="card-body mx-auto">
 
               <h1>Welcome back to KeepingTabs</h1>

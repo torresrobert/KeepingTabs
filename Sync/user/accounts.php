@@ -35,12 +35,13 @@ include_once 'user.header.php'
   <div class="container">
     <div class="table-responsive">
       <div id="new-search-area"></div>
-      <table id="chart_of_accounts" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="accounts" class="table table-striped table-bordered" cellspacing="0" width="100%">
    <thead>
      <tr class="primary">
        <th scope="col">Account Number</th>
        <th scope="col">Account Name</th>
        <th scope="col">Account Type</th>
+       <th scope="col">Account Sub Type</th>
        <th scope="col">Active</th>
        <th scope="col">Normal Side</th>
        <th scope="col">Balance</th>
@@ -60,7 +61,8 @@ include_once 'user.header.php'
        echo "<tr class='clickable-row' data-href='url://'>";
        echo '<th scope="row">'.$employee['accountNumber']."</th>";
        echo  "<td>".$employee['accountName']."</td>";
-       echo "<td>".ucwords($employee['accountType'])."</td>";
+       echo "<td>".ucwords(str_replace('_', ' ',$employee['accountType']))."</td>";
+       echo "<td>".ucwords(str_replace('_', ' ',$employee['accountSubType']))."</td>";
        if ($employee['isActive']){
          echo "<td>Yes</td>";
        }else {

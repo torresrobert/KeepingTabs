@@ -41,7 +41,7 @@ include_once 'user.header.php'
        <th scope="col">Account Number</th>
        <th scope="col">Account Name</th>
        <th scope="col">Account Type</th>
-       <th scope="col">Active</th>
+       <th scope="col">Account Sub Type</th>
        <th scope="col">Normal Side</th>
        <th scope="col">Balance</th>
        <?php
@@ -60,14 +60,8 @@ include_once 'user.header.php'
        echo "<tr class='clickable-row' data-href='url://'>";
        echo '<th scope="row">'.$employee['accountNumber']."</th>";
        echo  "<td>".$employee['accountName']."</td>";
-       echo "<td>".ucwords($employee['accountType'])."</td>";
-       if ($employee['isActive']){
-         echo "<td>Yes</td>";
-       }else {
-         echo "<td>No</td>";
-       }
-
-
+       echo "<td>".ucwords(str_replace('_', ' ',$employee['accountType']))."</td>";
+        echo "<td>".ucwords(str_replace('_', ' ',$employee['accountSubType']))."</td>";
        echo "<td>".ucwords($employee['NormalSide'])."</td>";
 
 

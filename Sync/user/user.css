@@ -22,7 +22,7 @@
   --gray: #6c757d;
   --gray-dark: #343a40;
   --primary: #333462;
-  --secondary: #333462;
+  --secondary: #e9ecef;
   --success: #28a745;
   --info: #ccc;
   --warning: #ffc107;
@@ -4139,12 +4139,12 @@ button.bg-primary:focus {
   background-color: #333462 !important; }
 
 .bg-secondary {
-  background-color: #333462 !important; }
+  background-color: #e9ecef !important; }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
 button.bg-secondary:hover,
 button.bg-secondary:focus {
-  background-color: #ff1708 !important; }
+  background-color: #e9ecef !important; }
 
 .bg-success {
   background-color: #28a745 !important; }

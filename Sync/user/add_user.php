@@ -98,7 +98,7 @@ if(isset($_POST['submit'])&&($_SESSION['u_atype']=='admin'))
 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <lÍÍÍÍÍÍabel class="input-group-text"  for="inputGroupSelect01">Account Type</label>
+                <label class="input-group-text"  for="inputGroupSelect01">Account Type</label>
               </div>
               <select class="custom-select" name="accountType" id="inputGroupSelect01">
                 <option selected>Choose...</option>

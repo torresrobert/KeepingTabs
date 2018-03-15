@@ -43,11 +43,13 @@ include_once "user.header.php"
  <table id="user_dir" class="table table-striped table-bordered" cellspacing="0" width="100%">
  <thead>
  <tr>
- <th>Username</th>
- <th>First</th>
- <th>Last</th>
- <th>Role</th>
- <th>Create On</th>
+ <th>Account #</th>
+ <th>Account</th>
+ <th>Debits</th>
+ <th>Credits</th>
+ <th>Description</th>
+ <th>Name</th>
+ <th>Description</th>
  </tr>
  </thead>
  <tbody>
