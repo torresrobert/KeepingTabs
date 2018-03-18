@@ -1,17 +1,38 @@
 <?php
 //including the database connection file
 include_once 'user.header.php';
-$sql =  "SELECT MAX(EntryID) FROM JournalEntry;";
-$curr_EntryID = mysqli_query($conn, $sql);
-$curr_EntryID++;
-//echo $curr_EntryID;
+
+?>
+<?php
+if(isset($_POST['new_entry']))
+{
+
+$j_id = $_GET['id'];
+$username = $_SESSION['u_uid'];
+$new_entry = "INSERT INTO JournalEntry (Date, JournalID, CreatedBy) VALUES ('0000-00-00','$j_id','$username')";
+$curr_entry = mysqli_query($conn, $new_entry);
+$e_id =  mysqli_insert_id($conn);
+$new_entry = "INSERT INTO Transaction (JournalID, EntryID) VALUES ($j_id, $e_id)";
+mysqli_query($conn, $new_entry);
+echo "Journal entry created successfully, current entry is #".$e_id;
+}
 ?>
 
+<!--scan for all active financial accounts-->
 <?php
-if(isset($_POST['submit']))
+$get = mysqli_query($conn, "SELECT accountName FROM FinancialAccounts ORDER BY accountNumber ASC");
+$option = '';
+ while($an = mysqli_fetch_assoc($get))
 {
-  $username = $_SESSION['u_uid'];
 
+  $option .= '<option value = "'.$an['accountName'].'">'.$an['accountName'].'</option>';
+}
+ ?>
+
+ <!--add a line-->
+<?php
+if(isset($_POST['add_line']))
+{
 
   $JournalName = mysqli_real_escape_string($conn, $_POST['JournalName']);
   $Amount = mysqli_real_escape_string($conn, $_POST['Amount']);
@@ -21,8 +42,6 @@ if(isset($_POST['submit']))
 
   $prev_val = "Did not exist";
   $activity = "Adding journal";
-
-  $curr_JournalID = 31;
 
 
 
@@ -43,7 +62,7 @@ if(isset($_POST['submit']))
 
     else{*/
       //updating the table
-      $sql =  "INSERT INTO Transaction (Amount, Side, AccountName, Current) VALUES ('$Amount', '$Side', '$AccountName', '1')";
+      $sql =  "INSERT INTO Transaction (Amount, Side, AccountName, EntryID, JournalID) VALUES ('$Amount', '$Side', '$AccountName', '$e_id', '$j_id')";
       $success = mysqli_query($conn, $sql);
 
       /*$log = "INSERT INTO Activity (PreviousValue, activity, username) VALUES ('$prev_val','$activity', '$username');";
@@ -117,57 +136,67 @@ if(isset($_POST['submit']))
 
   <?php
   include '../includes/dbh.inc.php';
-  $sql = "SELECT * FROM Journal";
-  $records = mysqli_query($conn, $sql);
+  $sql = "SELECT * FROM Transaction WHERE JournalID = '$j_id' AND EntryID = '$e_id'";
+  $curr_trans = mysqli_query($conn, $sql);
   ?>
-
   <div class="container">
-  <?php
-  while ($curr_journal = mysqli_fetch_assoc($records)){
-    $JournalName = $curr_journal["JournalName"];
-    $JournalID = $curr_journal["JournalID"];
-  echo "<div class='container'>";
-    echo "<h1> Journal " . $curr_journal["EntryID"] . "</h1>";
-    echo "<div class='table-responsive'>
-      <div id='new-search-area'></div>
-      <table id='journal' class='table table-striped table-bordered' cellspacing='0' width='100%'>
-        <thead>
-          <tr class='primary'>
-            <th scope='col'>Account</th>
-            <th scope='col'>Debit</th>
-            <th scope='col'>Credit</th>
-            <th scope='col'>Delete</th>
-          </tr>
-        </thead>
-        <tbody>";
-        $query = "SELECT * FROM Transaction WHERE Current = '1'";
-        $entries = mysqli_query($conn, $query);
-        while ($row = mysqli_fetch_assoc($entries)) {
-          echo "<tr class='clickable-row' data-href='url://'>";
-          echo '<th scope="row">'.$row['AccountName']."</th>";
-          if ($row['Side']=='Debit'){
-            echo "<td><p class='text-right'>$".number_format($row['Amount'],2)."</p></td>";
-            echo "<td> </td>";
-          }else if ($row['Side']=='Credit'){
-            echo "<td> </td>";
-            echo "<td><p class='text-right'>$".number_format($row['Amount'],2)."</p></td>";
-          }
+    <div class="table-responsive">
+      <div id="new-search-area"></div>
+  <table id='journal' class='table table-striped table-bordered' cellspacing='0' width='100%'>
+    <thead>
+      <tr class='primary'>
+        <th scope='col'>Transaction ID</th>
+        <th scope='col'>Account</th>
+        <th scope='col'>Debit</th>
+        <th scope='col'>Credit</th>
+        <th scope='col'>Modify</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      while( $row = mysqli_fetch_assoc($curr_trans) ) {
+      ?>
+      <tr class='clickable-row' data-href='url://'>
+          <?php echo '<th scope="row">'.$row['TransactionID'].'</th>';
+           echo '<td>'.$row['AccountName'].'</td>';
+           if ($row['Side']=='Debit'){
+          echo '<td>'.$row['Amount'].'</td>';
+           echo '<td> </td>';
+         } else if($row['Side']=='Credit'){
+           echo '<td> </td>';
+            echo '<td>'.$row['Amount'].'</td>';
+         } else {
+           echo '<td> </td>';
+           echo '<td> </td>';
+         }
+           echo "<td><a href=\"edit_curr_trans.php?id=$row[TransactionID]\">Edit</a> | <a href=\"delete_account.php?id=$row[TransactionID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+           ?>
+</tr>
 
-          echo "<td><a href=\"delete_transaction.php?id=$employee[username]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
-          echo "</tr>";
-        }
 
-        echo "
-        </tbody>
-      </table>
-    </div>
-  </div>
-  "
-  ;
-  }
-  ?>
+<?php
+}
+?>
+</tbody>
+</table>
+</div>
 
-<br><br><br>
+
+
+
+
+  <br><br><br>
+<div>
+  <label for="form_control_upload_file">Supporting files</label>
+  <form action ="upload.php" method="POST" enctype="multipart/form-data">
+      	<input type="file" name="file">
+      	<button type="submit" name="submit">Upload</button>
+      </form>
+</div>
+<br><br>
+
+<p>Date: <input type="text" id="datepicker"></p>
+
 <div class="form-group">
     <label for="exampleFormControlTextarea1">Description</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -176,7 +205,56 @@ if(isset($_POST['submit']))
 
 </div>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
 
-        <?php
-        include_once 'user.footer.php';
-        ?>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class='signup-form' action='journalize.php' method='POST'>
+          <div class='form-group'> <label for='AccountName'>Name</label>
+            <select class='custom-select' name='AccountName' id='AccountName'>
+                    <?php echo $option; ?>
+          </select>
+          </div>
+          <div class='form-group'> <label for='Amount'>Amount</label>
+            <input type='text' class='form-control' id='Amount' name='Amount'  placeholder='Enter an amount'>
+          </div>
+          <br>
+          <div class='input-group mb-3'>
+            <div class='input-group-prepend'>
+              <label class='input-group-text'  for='inputGroupSelect01'>Side</label>
+            </div>
+                  <select class='custom-select' name='Side' id='inputGroupSelect01'>
+                    <option selected>Choose...</option>
+                    <option value='Debit'>Debit</option>
+                    <option value='Credit'>Credit</option>
+                  </select>
+          </div>
+
+
+          <button type='add_line' name='add_line' class='btn btn-primary btn-block'>Add line</button>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<?php
+include_once 'user.footer.php';
+?>

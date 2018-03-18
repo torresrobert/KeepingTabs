@@ -23,15 +23,14 @@ if (!isset($_SESSION['u_uid'])){
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="src/logo.png" />
 	<link rel="icon" href="/src/logo.ico">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<title>KeepingTabs</title>
 	<link rel="stylesheet" href="user.css" type="text/css">
+
 	<script type="text/javascript" src="../script/functions.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous">
-	</script>
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js">
-	</script>
+
+
 
 </head>
 
@@ -59,7 +58,11 @@ if (!isset($_SESSION['u_uid'])){
 							Journal
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="journalize.php">Journalize</a>
+						<!--Sends user to default journal, the general journal-->
+						<form action="journalize.php?id=31" method="POST">
+							<button class="dropdown-item" type='new_entry' name='new_entry'>Journalize</button>
+						</form>
+
 							<a class="dropdown-item" href="journal.php">Journals</a>
 						</div>
 					</li>
