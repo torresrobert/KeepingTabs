@@ -59,11 +59,13 @@ if (!isset($_SESSION['u_uid'])){
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<!--Sends user to default journal, the general journal-->
-						<form action="journalize.php?id=31" method="POST">
-							<button class="dropdown-item" type='new_entry' name='new_entry'>Journalize</button>
-						</form>
+						<a class="dropdown-item" href="journalize.php?id=31">Current Journal Entry</a>
 
 							<a class="dropdown-item" href="journal.php">Journals</a>
+							<div class="dropdown-divider"></div>
+							<form action="journalize.php" method="POST">
+								<button class="dropdown-item" type='new_entry' name='new_entry'>New Journal Entry</button>
+							</form>
 						</div>
 					</li>
 					<li class="nav-item dropdown text-white">

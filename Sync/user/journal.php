@@ -62,27 +62,12 @@ if(isset($_POST['submit'])&&(($_SESSION['u_atype']=='admin')||($_SESSION['u_atyp
       </div>
     </div>
   </div>
-<!--add new account-->
+<!--add new Journal Entry-->
   <nav class="navbar navbar-light bg-light">
 
-    <?php
-    if (($_SESSION['u_atype']=='admin')||($_SESSION['u_atype']=='manager')){
-
-
-      $formioli = "
-      <form class='signup-form' action='journal.php' method='POST'>
-        <div class='form-group'> <label for='JournalName'>Journal Name</label>
-          <input type='text' class='form-control' id='JournalName' name='JournalName'  placeholder='Enter a jounal name'>
-        </div>
-        <button type='submit' name='submit' class='btn btn-primary btn-block'>Add Journal</button>
-      </form>
-      ";
-
-
-    echo '<a class="btn btn-primary btn span4" href="#" name="toggle" data-toggle="popover" data-html="true" title="Add new journal" data-content="' . $formioli . '"><i class="fas fa-book"></i>  Add new journal</a>';
-   }
-   ?>
-
+<form action="journalize.php" method="POST">
+  <button class="btn btn-primary" type='new_entry' name='new_entry'><i class="fas fa-book"></i>  Add new journal entry</button>
+</form>
 
 </nav>
 <!--display table-->

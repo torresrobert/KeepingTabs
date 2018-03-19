@@ -1,19 +1,24 @@
 <?php
 //including the database connection file
 include_once 'user.header.php';
-
+session_start();
+$j_id = '31';
+$username = $_SESSION['u_uid'];
+$e_id = $_SESSION['e_id'];
+$_SESSION["j_id"]=$j_id;
 ?>
 <?php
 if(isset($_POST['new_entry']))
 {
+session_start();
+$j_id = $_SESSION['j_id'];
 
-$j_id = $_GET['id'];
-$username = $_SESSION['u_uid'];
 $new_entry = "INSERT INTO JournalEntry (Date, JournalID, CreatedBy) VALUES ('0000-00-00','$j_id','$username')";
 $curr_entry = mysqli_query($conn, $new_entry);
 $e_id =  mysqli_insert_id($conn);
 $new_entry = "INSERT INTO Transaction (JournalID, EntryID) VALUES ($j_id, $e_id)";
 mysqli_query($conn, $new_entry);
+$_SESSION["e_id"]=$e_id;
 echo "Journal entry created successfully, current entry is #".$e_id;
 }
 ?>
@@ -33,6 +38,9 @@ $option = '';
 <?php
 if(isset($_POST['add_line']))
 {
+  session_start();
+  $e_id = $_SESSION['e_id'];
+  $j_id = '31';
 
   $JournalName = mysqli_real_escape_string($conn, $_POST['JournalName']);
   $Amount = mysqli_real_escape_string($conn, $_POST['Amount']);
@@ -45,28 +53,12 @@ if(isset($_POST['add_line']))
 
 
 
-  // checking empty fields
-  /*if (empty($JournalName))
-  {
-    echo "<font color='red'>Journal name is empty.</font><br/>";
-
-  }else{
-      $sql_check = "SELECT * FROM Journal WHERE JournalName = '$JournalName'";
-      $result = mysqli_query($conn, $sql_check);
-      $resultCheck = mysqli_num_rows($result);
-      if($resultCheck > 0){
-        echo "<font color='red'>Journal name is already taken.</font><br/>";
-        echo "<button class='btn btn-outline-danger' onclick='window.history.go(-1)'>Try again?</button>";
-        }
 
 
-    else{*/
       //updating the table
       $sql =  "INSERT INTO Transaction (Amount, Side, AccountName, EntryID, JournalID) VALUES ('$Amount', '$Side', '$AccountName', '$e_id', '$j_id')";
       $success = mysqli_query($conn, $sql);
 
-      /*$log = "INSERT INTO Activity (PreviousValue, activity, username) VALUES ('$prev_val','$activity', '$username');";
-      mysqli_query($conn, $log);*/
 
       if ($success) {
         echo "Line added successfully";
@@ -99,39 +91,10 @@ if(isset($_POST['add_line']))
 
   <a class="btn btn-outline-primary span4" href="journal.php" role="button"> <i class="	fa fa-chevron-left"></i> Journals</a>
 
-  <?php
-  if (($_SESSION['u_atype']=='admin')||($_SESSION['u_atype']=='manager')){
 
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-book"></i>
+    Add a line</button>
 
-    $formioli = "
-    <form class='signup-form' action='journalize.php' method='POST'>
-      <div class='form-group'> <label for='AccountName'>Name</label>
-        <input type='text' class='form-control' id='AccountName' name='AccountName'  placeholder='Enter an a name'>
-      </div>
-      <div class='form-group'> <label for='Amount'>Amount</label>
-        <input type='text' class='form-control' id='Amount' name='Amount'  placeholder='Enter an amount'>
-      </div>
-      <br>
-      <div class='input-group mb-3'>
-        <div class='input-group-prepend'>
-          <label class='input-group-text'  for='inputGroupSelect01'>Side</label>
-        </div>
-              <select class='custom-select' name='Side' id='inputGroupSelect01'>
-                <option selected>Choose...</option>
-                <option value='Debit'>Debit</option>
-                <option value='Credit'>Credit</option>
-              </select>
-      </div>
-
-
-      <button type='submit' name='submit' class='btn btn-primary btn-block'>Add line</button>
-  </form>
-    ";
-
-
-  echo '<a class="btn btn-primary btn span4" href="#" name="toggle" data-toggle="popover" data-html="true" title="Add new line" data-content="' . $formioli . '"><i class="fas fa-book"></i>  Add new line</a>';
-  }
-  ?>
   </nav>
 
   <?php
@@ -169,7 +132,7 @@ if(isset($_POST['add_line']))
            echo '<td> </td>';
            echo '<td> </td>';
          }
-           echo "<td><a href=\"edit_curr_trans.php?id=$row[TransactionID]\">Edit</a> | <a href=\"delete_account.php?id=$row[TransactionID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+           echo "<td><a href=\"edit_curr_trans.php?id=$row[TransactionID]\">Edit</a> | <a href=\"delete_transaction.php?id=$row[TransactionID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
            ?>
 </tr>
 
@@ -205,10 +168,6 @@ if(isset($_POST['add_line']))
 
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
