@@ -48,9 +48,6 @@ if (!isset($_SESSION['u_uid'])){
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="chart_of_accounts.php">Chart of Accounts</a>
 							<a class="dropdown-item" href="accounts.php">Accounts</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item disabled" href="#">Categories</a>
-							<a class="dropdown-item disabled" href="#">Normal Sides</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown text-white">

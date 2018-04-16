@@ -1,5 +1,10 @@
 <?php
+include_once("../includes/dbh.inc.php");
 if (isset($_POST['submit'])){
+	session_start();
+	$e_id = $_SESSION['e_id'];
+
+
 	$file = $_FILES['file'];
 
 	$fileName = $_FILES['file']['name'];
@@ -19,6 +24,9 @@ if (isset($_POST['submit'])){
 				$fileNameNew = uniqid('', true).".".$fileActualExt;
 				$fileDestination = 'uploads/'.$fileNameNew;
 				move_uploaded_file($fileTmpName, $fileDestination);
+				$sql = "UPDATE JournalEntry SET AttachmentFile = '$fileDestination' WHERE EntryID = '$e_id'";
+				mysqli_query($conn, $sql);
+
 
 			} else {
 				echo "Your file is too big";

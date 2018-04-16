@@ -126,7 +126,6 @@ echo "</div>";
           <th scope='col'>Entry ID</th>
           <th scope='col'>Submission Date</th>
           <th scope='col'>Description</th>
-          <th scope='col'>Approved</th>
           <th scope='col'>Journal ID</th>";
           if (($_SESSION['u_atype']=='manager')){
             echo "<th scope='col'>Assessment</th>";
@@ -135,20 +134,13 @@ echo "</div>";
       echo "</tr>
       </thead>
       <tbody>";
-      $query = "SELECT * FROM JournalEntry WHERE JournalID = $JournalID AND Status = 1";
+      $query = "SELECT * FROM Ledger WHERE JournalID = $JournalID AND Status = 1";
       $entries = mysqli_query($conn, $query);
       while ($row = mysqli_fetch_assoc($entries)) {
         echo "<tr class='clickable-row' data-href='url://'>";
-        echo "<th scope='row'><a href='view_entry.php?id=$row[EntryID]'>".$row['EntryID']."</a></th>";
+        echo '<th scope="row">'.$row['EntryID']."</th>";
         echo  "<td>".$row['Date']."</td>";
         echo "<td>".$row['Description']."</td>";
-        if ($row['Approved'] == "approved"){
-          echo "<td>Yes</td>";
-        }else if($row['Approved'] == "denied"){
-          echo "<td>No</td>";
-        }else if($row['Approved'] == "pending"){
-          echo "<td>Pending</td>";
-        }
 
         echo "<td>".$row['JournalID']."</td>";
         if (($_SESSION['u_atype']=='manager')){

@@ -42,6 +42,35 @@ session_start();
 
                 <!login form->
                 <form class="login-form" action="includes/login.inc.php" method="POST">
+
+
+                  <?php $url = "http://"
+                 . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+
+if(strpos($url,'empty') !== false){ echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error 00 - </strong>
+Fields are empty, please check input fields.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>'; } else if(strpos($url,'error_user_not_found') !== false){ echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error 00 - </strong>
+Fields are empty, please check input fields.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>'; }
+  else if(strpos($url,'error_password') !== false) { echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Error 01 - </strong>
+  Fields are empty, please check input fields.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>'; }
+     else {
+} ?>
+
                   <div class="form-group"> <label>Username</label>
                     <input type="username" name="username" class="form-control" placeholder="Enter Username"> </div>
                     <div class="form-group"> <label>Password</label>

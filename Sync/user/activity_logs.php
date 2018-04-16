@@ -3,7 +3,7 @@ include_once 'user.header.php';
 ?>
 <?php
 
-if($_SESSION['u_atype']=='admin'){
+if(($_SESSION['u_atype']=='admin')||($_SESSION['u_atype']=='manager')){
 
 }else {
   header("Location: user.php?not_authorized");

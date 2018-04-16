@@ -19,7 +19,7 @@ include_once 'user.header.php'
 <!--add new account-->
   <nav class="navbar navbar-light bg-light">
     <?php
-    if (($_SESSION['u_atype']=='admin')){
+    if (($_SESSION['u_atype']=='admin')||($_SESSION['u_atype']=='manager')){
     echo '<a class="btn btn-primary btn span4" href="add_account.php" role="button">Add new account</a>';
    }
    ?>
@@ -58,8 +58,8 @@ include_once 'user.header.php'
    <tbody>
      <?php
      while ($employee = mysqli_fetch_assoc($records)) {
-       echo "<tr class='clickable-row' data-href='url://'>";
-       echo '<th scope="row">'.$employee['accountNumber']."</th>";
+       echo "<tr>";
+       echo "<th scope='row'><a href='account_view.php?id=$employee[AccountID]'>".$employee['accountNumber']."</a></th>";
        echo  "<td>".$employee['accountName']."</td>";
        echo "<td>".ucwords(str_replace('_', ' ',$employee['accountType']))."</td>";
        echo "<td>".ucwords(str_replace('_', ' ',$employee['accountSubType']))."</td>";

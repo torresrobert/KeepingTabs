@@ -58,7 +58,7 @@ include_once 'user.header.php'
      <?php
      while ($employee = mysqli_fetch_assoc($records)) {
        echo "<tr class='clickable-row' data-href='url://'>";
-       echo '<th scope="row">'.$employee['accountNumber']."</th>";
+       echo "<th scope='row'><a href='account_view.php?id=$employee[AccountID]'>".$employee['accountNumber']."</a></th>";
        echo  "<td>".$employee['accountName']."</td>";
        echo "<td>".ucwords(str_replace('_', ' ',$employee['accountType']))."</td>";
         echo "<td>".ucwords(str_replace('_', ' ',$employee['accountSubType']))."</td>";
