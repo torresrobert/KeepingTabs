@@ -14,6 +14,13 @@ include '../includes/dbh.inc.php';
   </div>
 <!--display table-->
 
+<div class="container">
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col">
+
 <?php
     $query = $_GET['query'];
     // gets value sent over search form
@@ -43,7 +50,7 @@ include '../includes/dbh.inc.php';
 
             while($results = mysqli_fetch_array($raw_results)){
             // $results = mysqli_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
-                echo "<p><h3>".$results['name']."</h3>".$results['url']."</p>";
+                echo "<br><h3><a href='".$results['url']."'>".$results['name']."</a></h3><p>".$results['description']."</p>";
                 // posts results gotten from database(title and text) you can also show id ($results['id'])
             }
 
@@ -56,7 +63,24 @@ include '../includes/dbh.inc.php';
     else{ // if query length is less than minimum
         echo "Minimum length is ".$min_length;
     }
+
+    echo "<br><br><br><br><br>";
+
 ?>
+<?php
+echo "<div class='text-center'><h3> Still need help?</h3>";
+if (($_SESSION['u_atype']=='user')||($_SESSION['u_atype']=='manager')){
+echo '<a class="btn btn-primary btn-lg span4" href="#" role="button">Contact Admin</a>';
+}else if (($_SESSION['u_atype']=='admin')){
+echo '<a class="btn btn-primary btn-lg span4" href="#" role="button">Contact KeepingTabs</a>';
+echo "</div>";
+}
+?>
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
 
 <?php
 include_once 'user.footer.php';
