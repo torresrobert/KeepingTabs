@@ -29,7 +29,7 @@ $AccountName = $curr_account[1];
   </div>
 <!--add new account-->
 <nav class="navbar navbar-light bg-light">
-  <a class="btn btn-outline-primary span4" href="chart_of_accounts.php" role="button"><i class="	fa fa-chevron-left"></i> Chart of Accounts</a>'
+  <a class="btn btn-outline-primary span4" href="chart_of_accounts.php" role="button"><i class="	fa fa-chevron-left"></i> Chart of Accounts</a>
 
 </nav>
 
@@ -62,7 +62,7 @@ $AccountName = $curr_account[1];
             ?>
             <tr class='clickable-row' data-href='url://'>
               <?php
-              echo '<th>'.$row['EntryID'].'</td>';
+              echo "<th scope='row'><a href='view_entry.php?id=$row[EntryID]'>".$row['EntryID']."</a></th>";
               echo '<td>'.$row['Date'].'</td>';
               echo '<th>'.$row['Description'].'</td>';
               echo "<th><p class='text-right'>$".number_format($row['Amount'],2)."</p></td>";

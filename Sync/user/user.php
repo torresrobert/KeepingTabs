@@ -13,19 +13,29 @@ include_once 'user.header.php';
     <a class="btn btn-primary btn-lg" href="documentation.php" role="button">Learn more</a>
   </p>
 </div>
+
+<!--Charts--->
+
 <div class="container">
   <div class="row">
     <div class="col">
+      <canvas id="myChart1" width="400" height="400"></canvas>
+      <div class="text-center"><h2><strong>Credits</strong></h2>
+      </div>
     </div>
-
-    <div class="col-4">
-<canvas id="myChart" width="200" height="200"></canvas>
-</div>
-  <div class="col">
-</div>
-</div>
+<div class="col">
 </div>
 
+    <div class="col">
+<canvas id="expensesBar" width="400" height="400"></canvas>
+
+<div class="text-center"><h2><strong>Expenses</strong></h2>
+</div>
+</div>
+
+</div>
+</div>
+<!--Charts--->
 
 
 

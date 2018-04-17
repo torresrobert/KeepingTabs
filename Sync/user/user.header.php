@@ -29,6 +29,7 @@ if (!isset($_SESSION['u_uid'])){
 
 	<script type="text/javascript" src="../script/functions.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 
 
 
