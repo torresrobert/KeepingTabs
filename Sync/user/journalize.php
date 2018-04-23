@@ -39,7 +39,7 @@ if(!isset($e_id)){
 <?php
 if(isset($_POST['save_data']))
 {
-  session_start();
+  //session_start();
   $selected_date = mysqli_real_escape_string($conn, $_POST['datepicker']);
   $phpdate = strtotime( $selected_date );
   $from_date = date( 'Y-m-d', $phpdate );
@@ -57,6 +57,15 @@ if(isset($_POST['submit_for_approval']))
 {
   session_start();
   $e_id = $_SESSION['e_id'];
+  $selected_date = mysqli_real_escape_string($conn, $_POST['datepicker']);
+  $phpdate = strtotime( $selected_date );
+  $from_date = date( 'Y-m-d', $phpdate );
+
+  $user_description = mysqli_real_escape_string($conn, $_POST['user_description']);
+  $_SESSION['user_description'] = $user_description;
+  $e_id = $_SESSION['e_id'];
+  $save_entry = "UPDATE JournalEntry SET Date = '$from_date', Description = '$user_description' WHERE EntryID = '$e_id'";
+  $save_entry = mysqli_query($conn, $save_entry);
   $submit_for_approval = "UPDATE JournalEntry SET Status = '1', Approved = 'pending' WHERE EntryID = '$e_id'";
   $submit_for_approval  = mysqli_query($conn, $submit_for_approval);
   header("Location: journal.php");
@@ -248,12 +257,21 @@ if(isset($_POST['add_line']))
     </div>
     <div class="container">
 
-      <button type='save_data' name='save_data' type="button" class="btn btn-primary btn-lg">
-        Save
-      </button>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#submit_for_approval">
+      <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#submit_for_approval">
         Submit for approval
-      </button>
+      </button> -->
+      <?php include_once("../includes/dbh.inc.php");
+      session_start();
+      $debits=$_SESSION["debits"];
+      $credits = $_SESSION["credits"];
+
+      if ($debits==$credits){
+        echo "<button type='submit_for_approval' name='submit_for_approval' class='btn btn-primary btn-lg'>Submit for Approval</button></div></form>";
+      }else {
+        echo "<div class='alert alert-danger' role='alert'>Sorry, your debits and credits must balance before submission.</div><button type='submit_for_approval' name='submit_for_approval' class='btn btn-primary disabled'>I consent</button></div>";
+      }
+      ?>
+
 
     </div>
 

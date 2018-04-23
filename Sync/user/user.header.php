@@ -75,9 +75,21 @@ if (!isset($_SESSION['u_uid'])){
 							<a class="dropdown-item" href="activity_logs.php">Logs</a>
 						</div>
 					</li>
+					<li class="nav-item dropdown text-white">
+						<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Reports
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="trial_balance.php">Trial Balance</a>
+							<a class="dropdown-item" href="income_statement.php">Income Statement</a>
+							<a class="dropdown-item" href="balance_sheet.php">Balance Sheet</a>
+							<a class="dropdown-item" href="retained_earnings.php">Retained Earnings</a>
+						</div>
+					</li>
 					<li class="nav-item mr-auto">
 						<a class="nav-link text-white" href="documentation.php">Get Support</a>
 					</li>
+
 				</ul>
 				<form class="form-inline mr-auto" action="search.php" method="GET">
 					<input class="form-control mr-2" type="text" name="query" placeholder="Search">

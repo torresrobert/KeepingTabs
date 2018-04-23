@@ -151,10 +151,12 @@ echo "</div>";
         }
 
         echo "<td>".$row['JournalID']."</td>";
-        if (($_SESSION['u_atype']=='manager')){
-          echo "<td><a href=\"approve_journal_entry.php?id=$row[EntryID]\" class='btn btn-success' role='button'>Approve</a>
-<a href='#' class='btn btn-danger' role='button'>Deny</a></td>";
-        }
+        if (($_SESSION['u_atype']=='manager')&&($row['Approved'] == "pending")){
+          echo "<td data-toggle='modal' data-id='$row[EntryID]' data-target='#orderModal'><a href=\"approve_journal_entry.php?id=$row[EntryID]\" class='btn btn-success' role='button'>Approve</a>
+          <a href=#' data-target='#my_modal' data-toggle='modal' class='btn btn-danger' role='button' data-id='my_id_value'>Deny</a></td>";
+}else if (($_SESSION['u_atype']=='manager')&&($row['Approved'] != "pending")){
+  echo "<td> </td>";
+}
         echo "</tr>";
       }
 
@@ -167,7 +169,49 @@ echo "</div>";
 ;
 }
 ?>
+</div>
+<!--
+<div class="modal fade" id="exampleModal" tabindex="-1" role="orderModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Would you like to deny entry ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-group" action="deny_journal_entry.php" method="POST">
+      <div class="modal-body">
+      <label for="reason">Reason for Assessment</label>
+      <textarea class="form-control" name="user_description" id="reason" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type='deny_journal_entry' name='deny_journal_entry' class='btn btn-danger'>Deny the entry</button></div></form>
+      </div>
+    </div>
+  </div>
+</div> -->
 
+<a href="#" data-target="#my_modal" data-toggle="modal" class="identifyingClass" data-id="my_id_value">Open Modal</a>
+
+<div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
+<div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
+        </div>
+        <div class="modal-body">
+            Modal Body
+            <input type="hidden" name="hiddenValue" id="hiddenValue" value="" />
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary">Yes</button>
+        </div>
+    </div>
+</div>
 </div>
 
 <?php

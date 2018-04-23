@@ -55,6 +55,13 @@ $("#accounts").DataTable({
 } );
 </script>
 <script>
+$("#balance_sheet").DataTable({
+  "columnDefs": [
+    { "searchable": false, "targets": 7 }
+  ]
+} );
+</script>
+<script>
 $( function() {
   $( "#datepicker" ).datepicker();
 } );
@@ -69,6 +76,19 @@ $(function() {
   });
 });
 </script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(".identifyingClass").click(function () {
+            var my_id_value = $(this).data('id');
+            $(".modal-body #hiddenValue").val(my_id_value);
+        })
+    });
+</script>
+
+
+
 
 <script>
 var ctx = document.getElementById("expensesBar").getContext('2d');

@@ -80,7 +80,9 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
+
 
 abbr[title],
 abbr[data-original-title] {
@@ -6192,4 +6194,9 @@ html, body {
     width: 600px;
     font-size: 20px;
     padding: 5px;
+}
+
+.doubleUnderline {
+    text-decoration:underline;
+    border-bottom: 1px solid #000;
 }
