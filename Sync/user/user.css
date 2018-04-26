@@ -6200,3 +6200,11 @@ html, body {
     text-decoration:underline;
     border-bottom: 1px solid #000;
 }
+.special-bordered {
+  border: 1px solid #dee2e6; }
+  .special-bordered th,
+  .special-bordered td {
+    border: 0px solid #dee2e6; }
+  .special-bordered thead th,
+  .special-bordered thead td {
+    border-bottom-width: 2px; }

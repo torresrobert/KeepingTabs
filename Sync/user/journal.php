@@ -86,16 +86,8 @@ if(isset($_POST['filter']))
   <button class="btn btn-primary" type='new_entry' name='new_entry'><i class="fas fa-book"></i>  Add new journal entry</button>
 </form>
 
-  <div class="dropdown show">
-  <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Assessment
-  </a>
 
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Pending</a>
-    <a class="dropdown-item" href="#">Approved</a>
-    <a class="dropdown-item" href="#">Rejected</a>
-  </div>
+  
 
 </div>
 

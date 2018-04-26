@@ -40,7 +40,7 @@ include_once 'user.header.php'
   <div class="container">
     <div class="table-responsive">
       <div id="new-search-area"></div>
-      <table id="balance_sheet" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="balance_sheet" class="table table-striped special-bordered" cellspacing="0" width="100%">
    <thead>
      <tr class="primary">
        <th scope="col">Assets</th>
@@ -79,9 +79,14 @@ include_once 'user.header.php'
       echo "<tr>";
       echo "  <td> <strong>Total Assets</strong></td>";
         echo "<td> </td>";
-        echo "<td class='text-right'><span class='doubleUnderline'>$ ".$total."</span></td>";
-      ?>
 
+        if ($total>0){
+          echo "<td class='text-right'><u>$ ".number_format($total,2)."</u></td>";
+        }elseif ($total<0){
+          echo "<td class='text-right'><u>$ (".number_format($total,2).")</u></td>";
+        }
+      ?>
+<tr><td></td><td></td><td></td>
    </tbody>
   </table>
 <!--Liabilites--><!--Liabilites--><!--Liabilites--><!--Liabilites-->
@@ -92,7 +97,7 @@ include_once 'user.header.php'
    ?>
 
 
-       <table id="balance_sheet" class="table table-striped table-bordered" cellspacing="0" width="100%">
+       <table id="balance_sheet" class="table table-striped special-bordered" cellspacing="0" width="100%">
     <thead>
       <tr class="primary">
         <th scope="col">Liabilites</th>
@@ -103,20 +108,35 @@ include_once 'user.header.php'
     <tbody>
       <?php
       $row_count = 0;
+      $totalLiabilities = 0;
       while ($row = mysqli_fetch_assoc($records)) {
         echo "<tr class='clickable-row' data-href='url://'>";
         echo  "<td>".$row['AccountName']."</td>";
         if ($row_count == 0){
           echo "<td><p class='text-right'>".number_format($row['Balance'],2)."</p></td>";
           $row_count++;
+          $totalLiabilities +=$row['Balance'];
        }else {
          echo "<td><p class='text-right'>".number_format($row['Balance'],2)."</p></td>";
          $row_count++;
+         $totalLiabilities +=$row['Balance'];
     }
+    echo "<td> </td>";
 
       }
-       ?>
+      echo "<tr>";
+      echo "  <td> <strong>Total Liabilites</strong></td>";
+        echo "<td> </td>";
 
+        if ($totalLiabilities>0){
+          echo "<td class='text-right'><u>$ ".number_format($totalLiabilities,2)."</u></td>";
+        }elseif ($totalLiabilities<0){
+          echo "<td class='text-right'><u>$ (".number_format($totalLiabilities,2).")</u></td>";
+        }
+
+
+      ?>
+  <tr><td></td><td></td><td></td>
     </tbody>
    </table>
    <!--Owner's Equity--><!--Owner's Equity--><!--Owner's Equity-->
@@ -127,7 +147,7 @@ include_once 'user.header.php'
    ?>
 
 
-       <table id="balance_sheet" class="table table-striped table-bordered" cellspacing="0" width="100%">
+       <table id="balance_sheet" class="table table-striped special-bordered" cellspacing="0" width="100%">
     <thead>
       <tr class="primary">
         <th scope="col">Owner's Equity</th>
@@ -138,18 +158,44 @@ include_once 'user.header.php'
     <tbody>
       <?php
       $row_count = 0;
+      $totalOE = 0;
       while ($row = mysqli_fetch_assoc($records)) {
         echo "<tr class='clickable-row' data-href='url://'>";
         echo  "<td>".$row['AccountName']."</td>";
         if ($row_count == 0){
           echo "<td><p class='text-right'>".number_format($row['Balance'],2)."</p></td>";
           $row_count++;
+          $totalOE +=$row['Balance'];
        }else {
          echo "<td><p class='text-right'>".number_format($row['Balance'],2)."</p></td>";
          $row_count++;
+         $totalOE +=$row['Balance'];
     }
-
+echo "<td> </td>";
       }
+      echo "<tr>";
+      echo "  <td>Total Owner's Equity</td>";
+        echo "<td> </td>";
+
+        if ($totalOE>0){
+          echo "<td class='text-right'><u>$ ".number_format($totalOE,2)."</u></td>";
+        }elseif ($totalOE<0){
+          echo "<td class='text-right'><u>$ (".number_format($totalOE,2).")</u></td>";
+        }
+
+      $total = $totalLiabilities+$totalOE;
+      echo "<tr><td></td><td></td><td></td>";
+      echo "<tr>";
+      echo "  <td> <strong>Total Liabilites & Owner's Equity</strong></td>";
+        echo "<td> </td>";
+      //  echo "<td class='text-right'><span class='doubleUnderline'><strong>$ ".$total."</span></strong></td>";
+
+        if ($total>0){
+          echo "<td class='text-right'><span class='doubleUnderline'>$ ".number_format($total,2)."</span></td>";
+        }elseif ($total<0){
+          echo "<td class='text-right'><span class='doubleUnderline'>$ (".number_format($total,2).")</span></td>";
+        }
+
        ?>
     </tbody>
    </table>

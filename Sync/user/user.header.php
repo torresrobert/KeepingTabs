@@ -62,7 +62,7 @@ if (!isset($_SESSION['u_uid'])){
 							<a class="dropdown-item" href="journal.php">Journals</a>
 							<div class="dropdown-divider"></div>
 							<form action="journalize.php" method="POST">
-								<button class="dropdown-item" type='new_entry' name='new_entry'>New Journal Entry</button>
+								<button class="dropdown-item" type='new_entry' value="new_entry" name='new_entry'>New Journal Entry</button>
 							</form>
 						</div>
 					</li>

@@ -57,7 +57,9 @@ $("#accounts").DataTable({
 <script>
 $("#balance_sheet").DataTable({
   "columnDefs": [
-    { "searchable": false, "targets": 7 }
+    { "searchable": false, "targets": 7
+   }
+
   ]
 } );
 </script>

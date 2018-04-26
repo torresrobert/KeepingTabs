@@ -42,7 +42,7 @@ include_once 'user.header.php'
   <div class="container">
     <div class="table-responsive">
       <div id="new-search-area"></div>
-      <table id="balance_sheet" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="balance_sheet" class="table table-striped special-bordered" cellspacing="0" width="100%">
    <thead>
      <tr class="primary">
        <th scope="col">Revenues</th>
@@ -58,9 +58,9 @@ include_once 'user.header.php'
        echo  "<td>".$row['AccountName']."</td>";
        if ($row_count == 0){
          if ($row['Balance']>0){
-         echo "<td><p class='text-right'>$ ".number_format($row['Balance'],2)."</p></td>";
+         echo "<td><p class='text-right'><u>$ ".number_format($row['Balance'],2)."</u></p></td>";
        }elseif ($row['Balance']<0) {
-         echo "<td><p class='text-right'>$ (".number_format(abs($row['Balance']),2).")</p></td>";
+         echo "<td><p class='text-right'><u>$ (".number_format(abs($row['Balance']),2).")</u></p></td>";
        }
          $row_count++;
          $totalRevenues+=$row['Balance'];
@@ -78,7 +78,11 @@ include_once 'user.header.php'
      }
       echo "<tr>";
       echo "  <td> <strong>Total Revenues</strong></td>";
-        echo "<td class='text-right'><span class='doubleUnderline'>$ ".$totalRevenues."</span></td>";
+      if ($totalRevenues>0){
+        echo "<td class='text-right'><u>$ ".number_format($totalRevenues,2)."</u></td>";
+      }elseif ($totalRevenues<0){
+        echo "<td class='text-right'><u>$ (".number_format($totalRevenues,2).")</u></td>";
+      }
       ?>
 
    </tbody>
@@ -86,12 +90,12 @@ include_once 'user.header.php'
 <!--Expenses--><!--Expenses--><!--Expenses--><!--Expenses-->
    <?php
    include '../includes/dbh.inc.php';
-   $sql = "SELECT AccountName, Balance, AccountType from FinancialAccounts where (Balance < 0 OR Balance > 0) AND (AccountType = 'expenses') ORDER BY AccountID";
+   $sql = "SELECT AccountName, Balance, AccountType from FinancialAccounts where (Balance < 0 OR Balance > 0) AND (AccountType = 'expense') ORDER BY AccountID";
    $records = mysqli_query($conn, $sql);
    ?>
 
 
-       <table id="balance_sheet" class="table table-striped table-bordered" cellspacing="0" width="100%">
+       <table id="balance_sheet" class="table table-striped special-bordered" cellspacing="0" width="100%">
     <thead>
       <tr class="primary">
         <th scope="col">Expenses</th>
@@ -107,9 +111,9 @@ include_once 'user.header.php'
         echo  "<td>".$row['AccountName']."</td>";
         if ($row_count == 0){
           if ($row['Balance']>0){
-          echo "<td><p class='text-right'>$ ".number_format($row['Balance'],2)."</p></td>";
+          echo "<td><p class='text-right'><u>$ ".number_format($row['Balance'],2)."</u></p></td>";
         }elseif ($row['Balance']<0) {
-          echo "<td><p class='text-right'>$ (".number_format(abs($row['Balance']),2).")</p></td>";
+          echo "<td><p class='text-right'><u>$ (".number_format(abs($row['Balance']),2).")</u></p></td>";
         }
           $row_count++;
           $totalExpenses+=$row['Balance'];
@@ -127,11 +131,23 @@ include_once 'user.header.php'
       }
       echo "<tr>";
       echo "  <td> <strong>Total Expenses</strong></td>";
-        echo "<td class='text-right'><span class='doubleUnderline'>$".$totalExpenses."</span></td>";
-      $total=$totalExpenses+$totalRevenues;
+        if ($totalExpenses>0){
+          echo "<td class='text-right'><u>$ ".number_format($totalExpenses,2)."</u></td>";
+        }elseif ($totalExpenses<0){
+          echo "<td class='text-right'><u>$ (".number_format($totalExpenses,2).")</u></td>";
+        }
+
+      $total=$totalRevenues-$totalExpenses;
+
+
         echo "<tr>";
         echo "  <td> <strong><strong>Net Income (Loss)</strong></strong></td>";
-          echo "<td class='text-right'><span class='doubleUnderline'>$ ".$total."</span></td>";
+        if ($total>0){
+        echo "<td><p class='text-right'><span class='doubleUnderline'> ".number_format(abs($total),2)."</span></p></td>";
+      }elseif ($total<0) {
+        echo "<td><p class='text-right'><span class='doubleUnderline'> (".number_format(abs($total),2).")</span></p></td>";
+      }
+        //  echo "<td class='text-right'><span class='doubleUnderline'>$ ".number_format(abs($total),2)."</span></td>";
        ?>
     </tbody>
    </table>

@@ -12,6 +12,7 @@ $user_description = $_SESSION['user_description'];
 if(isset($_POST['new_entry']))
 {
   session_start();
+
   $j_id = $_SESSION['j_id'];
 
   $new_entry = "INSERT INTO JournalEntry (Date, JournalID, CreatedBy) VALUES ('0000-00-00','$j_id','$username')";
@@ -26,12 +27,14 @@ $debits = 0;
 $_SESSION["debits"]=$debits;
 $credits = 0;
 $_SESSION["credits"]=$credits;
+
 ?>
 
 <?php
 if(!isset($e_id)){
   $e_id = $_SESSION['e_id'];
   header("Location: journal.php?no_current_entry");
+
   exit();
 }
 ?>
